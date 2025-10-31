@@ -20,6 +20,10 @@ import type {
 export class UsersController {
   constructor(private readonly usersService: UsersService) {}
 
+  @Get('me')
+  getMyProfile(@Request() req: AuthenticatedRequest) {
+    return req.user;
+  }
   // Admin-only: get all active users
   @Get()
   async findAll(@Request() req: AuthenticatedRequest): Promise<UserDocument[]> {
